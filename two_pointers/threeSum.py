@@ -1,35 +1,41 @@
-class Solution:
+# Time complexity : O(n^(2))
+# Space complexity : O(k) where k is the number of unique triplets
 
-    def __init__(self, problem):
-        self.problem = problem
+def threeSum(nums: list[int]) -> list[list[int]]:
 
-    def threeSum(self, nums: list[int]) -> list[list[int]]:
-        if len(nums) in [0,1,2]:
-            return [[]]
+    if len(nums) in [0,1,2]:
+        return [[]]
 
-        nums.sort()
-        triplets = set()
-        i = 0
+    nums.sort()
+    triplets = []
+    i = 0
 
-        while i < len(nums) - 2:
-            j, k = i + 1, len(nums)-1
-            while j < len(nums)-1 and k > j:
-                status = nums[i] + nums[j] + nums[k]
-                if status == 0:
-                    triplets.add(tuple([nums[i], nums[j], nums[k]]))
-                    j += 1
-                    k -= 1
-                elif status < 0:
-                    j += 1
-                else:
-                    k -= 1
+    for i in range(len(nums)-2):
+        if i > 0 and nums[i] == nums[i-1]:
             i += 1
+            continue
 
-        return [list(t) for t in triplets]
+        left, right = i + 1, len(nums)-1
 
+        while left < right:
+            status = nums[i] + nums[left] + nums[right]
+            if status == 0:
+                triplets.append([nums[i], nums[left], nums[right]])
+                left += 1
+                right -= 1
+                while left < right and nums[left] == nums[left - 1]:
+                    left += 1
+                while left < right and nums[right] == nums[right + 1]:
+                    right -= 1
+            elif status < 0:
+                left += 1
+            else:
+                right -= 1
 
-if __name__ == "__main__":
-    solution = Solution("threeSum")
-    print(solution.threeSum([-1,0,1,2,-1,-4]))
-    print(solution.threeSum([0, 1, 1]))
-    print(solution.threeSum([0, 0, 0]))
+    return triplets
+
+print("==========================")
+print(threeSum([-1,0,1,2,-1,-4]))
+print(threeSum([0, 1, 1]))
+print(threeSum([0, 0, 0]))
+print("==========================")

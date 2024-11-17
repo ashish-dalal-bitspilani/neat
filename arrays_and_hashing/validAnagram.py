@@ -1,4 +1,6 @@
 from collections import Counter
+# Time Complexity : O(s+t)
+# Space Complexity : O(s+t)
 
 def isAnagram_1(s: str, t: str) -> bool:
     return Counter(s) == Counter(t)
@@ -7,6 +9,9 @@ print("===========================================")
 print(isAnagram_1(s = "racecar", t = "carrace"))
 print(isAnagram_1(s = "jar", t = "jam"))
 print("===========================================")
+
+# Time Complexity : O(s+t)
+# Space Complexity : O(s+t)
 
 def isAnagram_2(s: str, t: str) -> bool:
     if len(s) != len(t):

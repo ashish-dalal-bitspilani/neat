@@ -1,3 +1,6 @@
+# Time complexity : O(n)
+# Algorithmic complexity : O(n)
+
 def twoSum(nums: list[int], target: int) -> list[int]:
 
     if len(nums) in [0, 1]:

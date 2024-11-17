@@ -1,24 +1,34 @@
-class Solution:
+# Time complexity : O(n)
+# Space complexity : O(n)
+def isPalindrome(s: str) -> bool:
+    if len(s) in [0, 1]:
+        return True
 
-    def __init__(self, problem):
-        self.problem = problem
+    text = [t.lower() for t in s if t.isalnum()]
+    return text == text[::-1]
 
-    def isPalindrome(self, s: str) -> bool:
+print("===========================================")
+print(isPalindrome("Was it a car or a cat I saw?"))
+print(isPalindrome("tab a cat"))
+print("===========================================")
 
-        if len(s) in [0, 1]:
-            return True
+# Time complexity : O(n)
+# Space complexity : O(1)
+def checkPalindrome(s: str) -> bool:
+    left, right = 0, len(s)-1
+    while left < right:
+        if s[left].isalnum() and s[right].isalnum() and s[left].lower() != s[right].lower():
+            return False
+        elif not(s[left].isalnum()):
+            left += 1
+        elif not(s[right].isalnum()):
+            right -= 1
+        else:
+            left += 1
+            right -= 1
+    return True
 
-        text = s.lower()
-
-        text = ''.join(text.split())
-
-        for t in text:
-            if not t.isalnum():
-                text = text.replace(t, "")
-        return text == text[::-1]
-
-
-if __name__ == "__main__":
-    solution = Solution("isPalindrome")
-    print(solution.isPalindrome("Was it a car or a cat I saw?"))
-    print(solution.isPalindrome("tab a cat"))
+print("===========================================")
+print(checkPalindrome("Was it a car or a cat I saw?"))
+print(checkPalindrome("tab a cat"))
+print("===========================================")

@@ -1,3 +1,6 @@
+# Time Complexity : O(1)
+# Space Complexity : O(1)
+
 def isValidSudoku(board: list[list[str]]) -> bool:
 
     rows = [set() for row in range(9)]
