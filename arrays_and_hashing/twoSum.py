@@ -1,5 +1,5 @@
 # Time complexity : O(n)
-# Algorithmic complexity : O(n)
+# Space complexity : O(n)
 
 def twoSum(nums: list[int], target: int) -> list[int]:
 
