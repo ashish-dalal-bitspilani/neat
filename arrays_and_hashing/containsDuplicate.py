@@ -9,6 +9,11 @@ def duplicateStatus(nums:list[int])->bool:
             return True
     return False
 
+print("===========================================")
+print(duplicateStatus(nums=[1, 2, 3, 3]))
+print(duplicateStatus(nums=[1, 2, 3, 4]))
+print("===========================================")
+
 # Time Complexity : O(n)
 # Space Complexity : O(n)
 def containsDuplicate(nums: list[int])-> bool:
@@ -16,6 +21,11 @@ def containsDuplicate(nums: list[int])-> bool:
         return False
 
     return len(nums) != len(set(nums))
+print("===========================================")
+print(containsDuplicate(nums = [1, 2, 3, 3]))
+print(containsDuplicate(nums = [1, 2, 3, 4]))
+print("===========================================")
+
 
 # Time Complexity : O(n)
 # Space Complexity : O(n)
@@ -29,6 +39,11 @@ def checksDuplicate(nums: list[int])-> bool:
             return True
         seen.add(num)
     return False
+print("===========================================")
+print(checksDuplicate(nums=[1, 2, 3, 3]))
+print(checksDuplicate(nums=[1, 2, 3, 4]))
+print("===========================================")
+
 
 # Time Complexity : O(n)
 # Space Complexity : O(n)
@@ -38,6 +53,11 @@ def hasDuplicate(nums: list[int])->bool:
 
     hash_map = dict(zip(nums, range(len(nums))))
     return list(hash_map.values()) != list(range(len(nums)))
+print("===========================================")
+print(hasDuplicate(nums=[1, 2, 3, 3]))
+print(hasDuplicate(nums=[1, 2, 3, 4]))
+print("===========================================")
+
 
 # Time Complexity : O(n)
 # Space Complexity : O(n)
@@ -47,6 +67,11 @@ def haveDuplicates(nums: list[int])->bool:
         return False
     hash_map = Counter(nums)
     return list(hash_map.values()) != [1]*len(nums)
+print("===========================================")
+print(haveDuplicates(nums=[1, 2, 3, 3]))
+print(haveDuplicates(nums=[1, 2, 3, 4]))
+print("===========================================")
+
 
 # Time Complexity : O(n)
 # Space Complexity : O(n)
@@ -56,6 +81,10 @@ def detectDuplicates(nums: list[int])->bool:
 
     hash_map = Counter(nums)
     return not max(hash_map.values()) > 1
+print("===========================================")
+print(detectDuplicates(nums=[1, 2, 3, 3]))
+print(detectDuplicates(nums=[1, 2, 3, 4]))
+print("===========================================")
 
 # Time Complexity : O(n*log(n))
 # Space Complexity : O(n)
@@ -67,28 +96,7 @@ def existDuplicate(nums: list[int])-> bool:
         if nums[index] == nums[index-1]:
             return True
     return False
-
 print("===========================================")
-print(containsDuplicate(nums = [1, 2, 3, 3]))
-print(containsDuplicate(nums = [1, 2, 3, 4]))
-
-print("===========================================")
-print(checksDuplicate(nums=[1, 2, 3, 3]))
-print(checksDuplicate(nums=[1, 2, 3, 4]))
-
-print("===========================================")
-print(hasDuplicate(nums=[1, 2, 3, 3]))
-print(hasDuplicate(nums=[1, 2, 3, 4]))
-print("===========================================")
-
-print(haveDuplicates(nums=[1, 2, 3, 3]))
-print(haveDuplicates(nums=[1, 2, 3, 4]))
-print("===========================================")
-
 print(existDuplicate(nums=[1, 2, 3, 3]))
 print(existDuplicate(nums=[1, 2, 3, 4]))
-print("===========================================")
-
-print(duplicateStatus(nums=[1, 2, 3, 3]))
-print(duplicateStatus(nums=[1, 2, 3, 4]))
 print("===========================================")

@@ -1,7 +1,6 @@
 # Time Complexity : O(n*m*log(m)) where n is the number of strings, m is the average length of each string
 # Space Complexity : O(n*m)
 
-
 def groupAnagrams(strs: list[str]) -> list[list[str]]:
     anagrams = {}
 
