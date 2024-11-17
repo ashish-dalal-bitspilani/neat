@@ -1,34 +1,44 @@
+# Time Complexity : O(n + n*log(n)) because most_common internally sorts based on frequencies of unique elements
+# Space Complexity : O(n)
 from collections import Counter
-
-def topKFrequent_1(nums: list[int], k: int) -> list[int]:
+def topKFrequent(nums: list[int], k: int) -> list[int]:
     return [a for (a,b) in Counter(nums).most_common(k)]
 
-def topKFrequent_2(nums: list[int], k: int) -> list[int]:
-    nums_freq_map = {}
+print("===========================================")
+print(topKFrequent(nums=[7,7], k=1))
+print(topKFrequent(nums = [3,2,3,1,2,4,5,5,6,7,7,8,2,3,1,1,1,10,11,5,6,2,4,7,8,5,6], k = 10))
+print(topKFrequent(nums = [1,2,2,3,3,3], k = 2))
+print("===========================================")
 
+# Time Complexity : O(n)
+# Space Complexity : O(n)
+from collections import defaultdict
+def top_k_frequent(nums: list[int], k: int) -> list[int]:
+
+    hash_map = {}
     for num in nums:
-        nums_freq_map[num] = nums_freq_map.get(num, 0) + 1
+        hash_map[num] = hash_map.get(num, 0) + 1
 
-    frequencies = set(nums_freq_map.values())
-    frequencies = sorted(frequencies, reverse=True)
-    top_k = frequencies[:k]
+    freq_map = defaultdict(list)
 
-    counter = 0
-    most_frequent = []
-    while counter < k and len(most_frequent) < k:
-        elements = [k for (k, v) in nums_freq_map.items() if v == top_k[counter]]
-        most_frequent.extend(elements)
-        counter += 1
+    for num in hash_map:
+        freq_map[hash_map[num]].append(num)
 
-    return most_frequent
+    frequencies = list(range(len(nums), 0, -1))
+
+    top_k = []
+
+    for freq in frequencies:
+        top_k.extend(freq_map[freq][:k - len(top_k)])
+        if len(top_k) == k:
+            return top_k
+
+    #print(f"hash map : {hash_map}")
+    #print(f"freq map : {freq_map}")
+    return top_k
 
 print("===========================================")
-print(topKFrequent_1(nums=[7,7], k=1))
-print(topKFrequent_1(nums = [3,2,3,1,2,4,5,5,6,7,7,8,2,3,1,1,1,10,11,5,6,2,4,7,8,5,6], k = 10))
-print(topKFrequent_1(nums = [1,2,2,3,3,3], k = 2))
-print("===========================================")
-print("===========================================")
-print(topKFrequent_2(nums=[1, 2, 2, 3, 3, 3], k=2))
-print(topKFrequent_2(nums=[7, 7], k=1))
-print(topKFrequent_2(nums=[3,2,3,1,2,4,5,5,6,7,7,8,2,3,1,1,1,10,11,5,6,2,4,7,8,5,6], k=10))
+print(top_k_frequent(nums=[7, 7], k=1))
+print(top_k_frequent(nums=[3,2,3,1,2,4,5,5,6,7,7,8,2,3,1,1,1,10,11,5,6,2,4,7,8,5,6], k=10))
+print(top_k_frequent(nums=[1, 2, 2, 3, 3, 3], k=2))
 print("===========================================")

@@ -19,8 +19,10 @@ def productExceptSelf(nums: list[int]) -> list[int]:
         product_arr.append(product(arr))
     return product_arr
 
+print("=============================")
 print(productExceptSelf(nums = [1,2,4,6]))
 print(productExceptSelf(nums = [-1,0,1,2,3]))
+print("=============================")
 
 # Time Complexity : O(n)
 # Space Complexity : O(n)
@@ -39,5 +41,7 @@ def product_except_self(nums: list[int]) -> list[int]:
 
     return result
 
+print("=============================")
 print(product_except_self(nums = [1,2,4,6]))
 print(product_except_self(nums = [-1,0,1,2,3]))
+print("=============================")
