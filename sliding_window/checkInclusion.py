@@ -1,24 +1,26 @@
-class Solution:
+# Time complexity : O(s2)
+# Space complexity : O(s1)
 
-    def __init__(self, problem):
-        self.problem = problem
+from collections import Counter
+def check_inclusion(s1: str, s2: str) -> bool:
 
-    def getPermutations(self, string:str) -> list[str]:
+    if len(s1) > len(s2):
+        return False
 
-        if len(string) in [0,1]:
-            return [string]
+    window = len(s1)
+    target_counter = Counter(s1)
+    current_counter = Counter(s2[:window])
 
-        perms = set()
-        remaining_perms = self.getPermutations(string[1:])
+    for i in range(len(s2) - window + 1):
+        if current_counter == target_counter:
+            return True
+        if i < len(s2) - window:
+            current_counter[s2[i]] -= 1
+            if current_counter[s2[i]] == 0:
+                del current_counter[s2[i]]
+            current_counter[s2[i + window]] = current_counter.get(s2[i + window], 0) + 1
 
-        for position in range(len(string)):
-            for p in remaining_perms:
-                perm = p[position:] + string[0] + p[:position]
-                perms.add(perm)
+    return False
 
-        return perms
-
-
-if __name__ == '__main__':
-    solution = Solution("checkInclusion")
-    print(solution.getPermutations("abc"))
+print(check_inclusion(s1 = "abc", s2 = "lecabee"))
+print(check_inclusion(s1 = "abc", s2 = "lecaabee"))
